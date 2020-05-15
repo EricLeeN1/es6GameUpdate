@@ -1,0 +1,2 @@
+# es6GameUpdate
+将基于es5的游戏更改成基于es6语法的游戏，同时锻炼自己的es6OOP能力
