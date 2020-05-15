@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="styles/main.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+    <link rel="apple-touch-startup-image" href="img/apple-touch-startup-image-640x1096.png"
+        media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"> <!-- iPhone 5+ -->
+    <link rel="apple-touch-startup-image" href="img/apple-touch-startup-image-640x920.png"
+        media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)">
+    <!-- iPhone, retina -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport"
+        content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
+    <title>2048</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="heading">
+            <h1 class="title">2048</h1>
+            <div class="scores-container">
+                <div class="score-current">0</div>
+                <div class="score-best">0</div>
+            </div>
+        </div>
+        <div class="above-game">
+            <a class="restart-button">点我开始</a>
+        </div>
+        <div class="game-container">
+
+            <div class="game-message">
+                <p></p>
+                <div class="lower">
+                    <a class="keep-playing-button">keep going</a>
+                    <button class="restart-button">点我开始</button>
+                </div>
+            </div>
+            <div class="grid-container">
+                <div class="grid-row">
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                </div>
+                <div class="grid-row">
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                </div>
+            </div>
+            <div class="tile-container">
+
+            </div>
+        </div>
+
+        <hr>
+
+        <p>Eric Lee 2020-5-14 22:09:25 es6重构</p>
+
+        <script>
+            const level1 = [
+                {
+                    score: 2,
+                    label: '九头虫',
+                    mark: '快来变身吧！'
+                },
+                {
+                    score: 4,
+                    label: '白龙马',
+                    mark: '小白马就挂了！'
+                },
+                {
+                    score: 8,
+                    label: '沙僧',
+                    mark: '沙和尚，是你吗'
+                },
+                {
+                    score: 16,
+                    label: '猪八戒',
+                    mark: '对小猪就是你！'
+                },
+                {
+                    score: 32,
+                    label: '孙悟空',
+                    mark: '悟空，等等我！'
+                },
+                {
+                    score: 64,
+                    label: '唐僧',
+                    mark: '打雷啦，收衣服啦'
+                },
+                {
+                    score: 128,
+                    label: '观音',
+                    mark: '普渡众生！'
+                },
+                {
+                    score: 256,
+                    label: '弥勒佛',
+                    mark: '阿弥托福！'
+                },
+                {
+                    score: 512,
+                    label: '上老君',
+                    mark: '你这泼猴，不像话！'
+                },
+                {
+                    score: 1024,
+                    label: '如来佛',
+                    mark: '五指山压死你'
+                },
+                {
+                    score: 2048,
+                    label: '神笔记',
+                    mark: '恭喜！终于见到本尊了！'
+                },
+                {
+                    score: 4096,
+                    label: '4096',
+                    mark: '强者！太伟大了！'
+                },
+                {
+                    score: 8192,
+                    label: '8192',
+                    mark: '你有这么厉害呀！'
+                },
+                {
+                    score: 16384,
+                    label: '16384',
+                    mark: '你已跳出三界之外了！'
+                },
+                {
+                    score: 32768,
+                    label: '九头虫',
+                    mark: '快来变身吧！'
+                },
+                {
+                    score: 65536,
+                    label: '九头虫',
+                    mark: '快来变身吧！'
+                },
+                {
+                    score: 131072,
+                    label: '九头虫',
+                    mark: '快来变身吧！'
+                },
+                {
+                    score: 2,
+                    label: '九头虫',
+                    mark: '快来变身吧！'
+                },
+                {
+                    score: 2,
+                    label: '九头虫',
+                    mark: '快来变身吧！'
+                },
+                {
+                    score: 2,
+                    label: '九头虫',
+                    mark: '快来变身吧！'
+                },
+                {
+                    score: 2,
+                    label: '九头虫',
+                    mark: '快来变身吧！'
+                },
+                {
+                    score: 2,
+                    label: '九头虫',
+                    mark: '快来变身吧！'
+                },
+            ]
+        </script>
+        <script src="js/main.js"></script>
+    </div>
+</body>
+
+</html>
